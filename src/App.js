@@ -1,6 +1,6 @@
 // src/App.js
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -15,14 +15,13 @@ import BlogPost from './components/BlogPost';
 import Footer from './components/Footer';
 import RequestDashboard from './components/RequestDashboard';
 
-// Form Components
 import AnimalRequestForm from './components/AnimalRequestForm';
 import DonationForm from './components/DonationForm';
 import CareRequestForm from './components/CareRequestForm';
 import FeederRequestForm from './components/FeederRequestForm';
 import Contact from './components/Contact';
-
 import BackToTopButton from './components/BackToTopButton';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   useEffect(() => {
@@ -30,7 +29,7 @@ function App() {
   }, []);
 
   return (
-    <Router>
+    <BrowserRouter basename="/pet-care">
       <Navbar />
       <Routes>
         <Route
@@ -38,6 +37,7 @@ function App() {
           element={
             <>
               <Hero />
+              {/* Scroll Background Section */}
               <div
                 className="bg-fixed bg-cover bg-center"
                 style={{
@@ -65,8 +65,9 @@ function App() {
         <Route path="/dashboard" element={<RequestDashboard />} />
       </Routes>
       <BackToTopButton />
+      <ToastContainer position="top-right" autoClose={3000} />
       <Footer />
-    </Router>
+    </BrowserRouter>
   );
 }
 
